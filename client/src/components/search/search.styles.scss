@@ -1,0 +1,39 @@
+.search-input {
+    font-size: 16px;
+    padding: 0px 16px 0px 16px;
+    margin: 8px;
+    
+    .search-input-label {
+        width: 100%;
+    }
+
+    .search-input-content {
+        width: 100%;
+        border: 0;
+        margin: 0;
+        display: block;
+        padding: 6px 0 7px;
+        min-width: 0;
+        border-bottom: 1px solid black;
+    }
+}
+
+.search-result {
+    list-style-type: none;
+    padding: 0px 16px 0px 16px;
+    
+    .search-result-content {
+        margin: 6px;
+    }
+
+    .search-result-symbol {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .search-result-name {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.7);
+    }
+
+}
