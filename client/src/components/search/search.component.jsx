@@ -1,5 +1,7 @@
 import React from 'react';
 import './search.styles.scss';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class Search extends React.Component {
     constructor() {
@@ -30,6 +32,7 @@ class Search extends React.Component {
             self.setState({
                 search: e.target.value,
                 tying: false,
+                loading: true,
                 typingTimeout: setTimeout(() => {
                     self.fetchData(self.state.search);
                     }, 1000)
@@ -37,7 +40,8 @@ class Search extends React.Component {
         
         }else{
             self.setState({
-                search: ''
+                search: '',
+                loading: false
             });
         }
 
@@ -62,13 +66,13 @@ class Search extends React.Component {
     }
 
     render() {
-        const { search, stockdata } = this.state;
+        const { loading, search, stockdata } = this.state;
         
         return (
             <div>
                 <div className="search-input">
                     <label className="search-label">
-                        Stock Symbol Or Name
+                        Stock Symbol
                     </label>
                     <input 
                         className="search-input-content"
@@ -77,22 +81,30 @@ class Search extends React.Component {
                         placeholder="" 
                     />
                 </div>
-                <ul className='search-result'>
-                { 
-                    search ?                 
-                        stockdata ?
-                            stockdata.bestMatches.map((item, key) => (
-                                <li key={key} className='search-result-content'>
-                                        <div className='search-result-symbol'>{Object.values(item)[0]}</div>
-                                        <div className='search-result-name'>{Object.values(item)[1]}</div>
-                                </li>
-                            ))
-                        :   
-                            <li></li>
-                    :
-                    <li></li>
-                }
-                </ul>
+
+                <div className='result'>
+                    {   
+                        loading ?
+                            <div className='loading'>
+                                <CircularProgress color='red' />
+                            </div>
+                        :
+                            <ul className='search-result'>
+                            { 
+                                search && stockdata  ?
+                                        stockdata.bestMatches.map((item, key) => (
+                                            <li key={key} className='search-result-content'>
+                                                <div className='search-result-symbol'>{Object.values(item)[0]}</div>
+                                                <div className='search-result-name'>{Object.values(item)[1]}</div>
+                                            </li>
+                                        ))
+                                    :   
+                                        <li></li>
+                                
+                            }
+                        </ul>
+                    }
+                </div>
             </div>
         )
     }

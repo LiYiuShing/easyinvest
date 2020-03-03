@@ -18,22 +18,29 @@
     }
 }
 
-.search-result {
-    list-style-type: none;
+
+.result {
     padding: 0px 16px 0px 16px;
-    
-    .search-result-content {
-        margin: 6px;
+
+    .loading {
+        text-align: center;
     }
 
-    .search-result-symbol {
-        font-size: 16px;
-        font-weight: 400;
-    }
+    .search-result {
+        list-style-type: none;
+        
+        .search-result-content {
+            margin: 6px;
+        }
 
-    .search-result-name {
-        font-size: 14px;
-        color: rgba(0, 0, 0, 0.7);
-    }
+        .search-result-symbol {
+            font-size: 16px;
+            font-weight: 400;
+        }
 
+        .search-result-name {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.7);
+        }
+    }
 }
