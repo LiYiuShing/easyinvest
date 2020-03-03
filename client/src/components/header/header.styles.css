@@ -1,0 +1,17 @@
+.root {
+    flex-grow: 1;
+}
+
+.grow {
+    flex-grow: 2;
+    font-size: 25;
+    font-family: Arkhip-Regular;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+}
+
+.menuButton {
+    margin-left: -12;
+    margin-right: 20;
+}

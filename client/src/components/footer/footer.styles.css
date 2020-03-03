@@ -1,0 +1,107 @@
+.container {
+    width: 88%;
+    max-width: 1080px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.footer {
+    background-color: #fff;
+    padding: 36pt 0;
+}
+
+.footer-dark {
+    background-color: #0c0514;
+}
+
+.footer-dark .footer-logo {
+    color: #fff;
+}
+
+.footer-dark .footer-inner {
+    color: #d9d9d9;
+}
+
+.footer--dark {
+    color: #d9d9d9;
+    border-color: #d9d9d9;
+}
+
+
+.footer-inner {
+    -js-display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+@media (min-width: 600px) {
+    .footer-inner {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+}
+
+.footer-logo {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    padding-right: 16pt;
+    display: block;
+    cursor: pointer;
+    color: #6c63ff;
+    font-weight: normal;
+    font-style: normal;
+    src: local("Arkhip-Regular"),
+    url("/client/public/fonts/Arkhip-Regular.otf") format("opentype");
+    letter-spacing: 0.8rem;
+    font-size: 1.35rem;
+    min-width: 33%;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 600px) {
+    .footer-logo {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .footer-logo {
+        min-width: 25%;
+        font-size: 1.5rem;
+    }
+}
+
+.footer-item {
+    -js-display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding-top: 0.25rem;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    font-size: 0.9rem;
+}
+
+.footer-row {
+    margin-bottom: 8pt;
+}

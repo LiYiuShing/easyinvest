@@ -1,0 +1,16 @@
+body {
+  font-family: 'Lacquer';
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  outline: 0;
+  text-decoration: none;
+  transition: 0.7s;
+  color: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
