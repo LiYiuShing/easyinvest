@@ -15,6 +15,7 @@
         padding: 6px 0 7px;
         min-width: 0;
         border-bottom: 1px solid black;
+        outline: none;
     }
 }
 
@@ -28,9 +29,14 @@
 
     .search-result {
         list-style-type: none;
+        padding: 0;
         
         .search-result-content {
             margin: 6px;
+        }
+
+        .search-result-content:hover {
+            background-color: aliceblue;
         }
 
         .search-result-symbol {
@@ -42,5 +48,6 @@
             font-size: 14px;
             color: rgba(0, 0, 0, 0.7);
         }
+        
     }
 }

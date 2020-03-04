@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './search.styles.scss';
-import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 class Search extends React.Component {
@@ -83,24 +84,23 @@ class Search extends React.Component {
                 </div>
 
                 <div className='result'>
-                    {   
-                        loading ?
+                    {loading ?
                             <div className='loading'>
-                                <CircularProgress color='red' />
+                                <CircularProgress />
                             </div>
                         :
                             <ul className='search-result'>
-                            { 
-                                search && stockdata  ?
-                                        stockdata.bestMatches.map((item, key) => (
-                                            <li key={key} className='search-result-content'>
+                            {search && stockdata  ?
+                                    stockdata.bestMatches.map((item, key) => (
+                                        <Link key={Object.values(item)[0]} to={`/symbol/${Object.values(item)[0]}`}>
+                                            <li key={Object.values(item)[0]} className='search-result-content'>
                                                 <div className='search-result-symbol'>{Object.values(item)[0]}</div>
                                                 <div className='search-result-name'>{Object.values(item)[1]}</div>
                                             </li>
-                                        ))
-                                    :   
-                                        <li></li>
-                                
+                                        </Link>
+                                    ))
+                                :   
+                                    <li></li>
                             }
                         </ul>
                     }

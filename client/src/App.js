@@ -5,6 +5,7 @@ import { createStructuredSelector } from 'reselect';
 
 import HomePage from './pages/homepage/homepage.component';
 import SignInPage from './pages/signinpage/siginpage.component.jsx';
+import SymbolPage from './pages/symbol/symbol.component';
 import Header from './components/header/header.component';
 import Footer from './components/footer/footer.component';
 
@@ -33,6 +34,7 @@ const App = ({checkUserSession, currentUser}) => {
               } 
             />
           </Switch>
+          <Route exact path={`/symbol/:symbol`} component={SymbolPage} />
         <Footer />
     </div>
   );

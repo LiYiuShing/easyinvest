@@ -21,8 +21,8 @@ A collection of navigational components that compose declaratively with the appl
 ### Redux
 An open-source JavaScript library for managing application state.
 
-### Redux Thunk
-Thunks are the recommended middleware for basic Redux side effects logic, including complex synchronous logic that needs access to the store, and simple async logic like AJAX requests.
+### Redux Saga
+A library that aims to make application side effects (i.e. asynchronous things like data fetching and impure things like accessing the browser cache) easier to manage, more efficient to execute, easy to test, and better at handling failures.
 
 ### Axios
 Promise based HTTP client for the browser and node.js
@@ -35,3 +35,6 @@ React components for faster and easier web development.
 
 ### Firebase
 A mobile and web application development platform developed by Firebase, Inc. 
+
+### Sass
+A stylesheet language that's compiled to CSS.
