@@ -33,12 +33,10 @@ export function* isUserAuthenticated() {
   try {
     const userAuth = yield getCurrentUser();
     yield put(signInFailure());
-   //yield put(signInSuccess({id: userAuth}));
   } catch (error) {
     yield put(signInFailure(error));
   }
 }
-
 
 
 export function* onGoogleSignInStart() {
