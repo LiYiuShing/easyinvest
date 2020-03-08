@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchSymbolStart } from '../../redux/symbol/symbol.actions';
+//import StockChart from '../../components/stock/stockchart/stockchart.component';
+import StockChart from '../../components/stock/stockchart/stockchart.component';
 
 
-
-const SymbolPage = ({fetchSymbolStart}) => {
+const SymbolPage = ({fetchSymbolStart, symbolData, loading, error}) => {
     const { symbol } = useParams();
 
     useEffect(() => {
@@ -14,12 +15,25 @@ const SymbolPage = ({fetchSymbolStart}) => {
     }, [fetchSymbolStart]);
 
     return (
-        <div>{symbol}</div>
+        <div>
+            { loading ? 
+                <div>loading</div> : 
+                <StockChart 
+                    data={symbolData}
+                /> 
+            }
+        </div>
     )
 };
+
+const mapStateToProps = state => ({
+    symbolData: state.symbol.stockData,
+    loading: state.symbol.loading,
+    error: state.symbol.error
+})
 
 const mapDispatchToProps = dispatch => ({
     fetchSymbolStart: (symbol) => dispatch(fetchSymbolStart(symbol))
 });
 
-export default connect(null, mapDispatchToProps)(SymbolPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SymbolPage);
