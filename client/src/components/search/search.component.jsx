@@ -12,6 +12,7 @@ const Search = () => {
         error: null
     });
     const [typingTimeOut, setTypingTimeOut] = useState(0);
+    const [displaySearchBox, setDisplaySearchBox] = useState(true);
 
     useEffect(() => {
         if (typingTimeOut){
@@ -36,6 +37,7 @@ const Search = () => {
                     stockdata: result,
                     loading: false
                 });
+                setDisplaySearchBox(true)
             })
             .catch((error) => {
                 setSearchResult({
@@ -45,7 +47,7 @@ const Search = () => {
             })
     }
 
-    const {stockdata, loading, error} = searchResult
+    const { stockdata, loading } = searchResult
 
     return (
         <div>
@@ -59,19 +61,21 @@ const Search = () => {
                 />
             </div>
 
-            <div className='result'>
-                {loading ?
+            <div className='result' id={displaySearchBox ? 'searchBoxShowTrue' : 'searchBoxShowFalse'}>
+                {
+                    loading || stockdata["Error Message"] ?
                     <div className='loading'>
                     </div>
                 :
                     <ul className='search-result'>
                     {stockdata  ?
                         stockdata.bestMatches.map((item, key) => (
-                            <Link 
+                            <Link
                                 key={Object.values(item)[0]} 
                                 to={`/symbol/${Object.values(item)[0]}`} 
                                 onClick={() =>  {
-                                    document.getElementById('searchInput').value = '' 
+                                    document.getElementById('searchInput').value = '';
+                                    setDisplaySearchBox(false);
                                 }}
                             >
                                 <li key={Object.values(item)[0]} className='search-result-content'>
