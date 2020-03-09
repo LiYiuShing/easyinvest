@@ -1,7 +1,6 @@
 .search-input {
     font-size: 16px;
     padding: 0px 16px 0px 16px;
-    margin: 8px;
     
     .search-input-label {
         width: 100%;
@@ -9,12 +8,11 @@
 
     .search-input-content {
         width: 100%;
-        border: 0;
         margin: 0;
         display: block;
         padding: 6px 0 7px;
         min-width: 0;
-        border-bottom: 1px solid black;
+        border: 1px solid #DADADA;
         outline: none;
     }
 }
@@ -22,6 +20,11 @@
 
 .result {
     padding: 0px 16px 0px 16px;
+    display: block;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    z-index: 1;
 
     .loading {
         text-align: center;

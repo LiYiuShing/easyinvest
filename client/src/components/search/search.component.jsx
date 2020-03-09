@@ -72,9 +72,6 @@ class Search extends React.Component {
         return (
             <div>
                 <div className="search-input">
-                    <label className="search-label">
-                        Stock Symbol
-                    </label>
                     <input 
                         className="search-input-content"
                         type="text" 
@@ -86,13 +83,12 @@ class Search extends React.Component {
                 <div className='result'>
                     {loading ?
                             <div className='loading'>
-                                <CircularProgress />
                             </div>
                         :
                             <ul className='search-result'>
                             {search && stockdata  ?
                                     stockdata.bestMatches.map((item, key) => (
-                                        <Link key={Object.values(item)[0]} to={`/symbol/${Object.values(item)[0]}`}>
+                                        <Link key={Object.values(item)[0]} to={`/symbol/${Object.values(item)[0]}`} >
                                             <li key={Object.values(item)[0]} className='search-result-content'>
                                                 <div className='search-result-symbol'>{Object.values(item)[0]}</div>
                                                 <div className='search-result-name'>{Object.values(item)[1]}</div>

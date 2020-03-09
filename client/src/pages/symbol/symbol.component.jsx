@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -8,19 +8,24 @@ import StockChart from '../../components/stock/stockchart/stockchart.component';
 
 const SymbolPage = ({fetchSymbolStart, symbolData, loading, error}) => {
     const { symbol } = useParams();
+    const mounted = useRef();
 
     useEffect(() => {
-        fetchSymbolStart(symbol);
-    }, [fetchSymbolStart]);
+        if (mounted.current === false) {
+            mounted.current = true;
+        } else {
+            fetchSymbolStart(symbol);
+        }
+    }, [symbol])
+    
+    if(loading) return (<div>loading</div>);
+    if(error) return (<div>error</div>);
 
     return (
         <div>
-            { loading ? 
-                <div>loading</div> : 
-                <StockChart 
-                    data={symbolData}
-                /> 
-            }
+            <StockChart 
+                data={symbolData}
+            />    
         </div>
     )
 };

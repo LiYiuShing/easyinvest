@@ -6,11 +6,11 @@ import './stockchart.styles.scss';
 
 const StockChart = (props) => {
 	const data = props.data;
-	const data1 = Object.values(data)[1];
+	const dataValue = Object.values(data)[1];
 	const [parseData, setParseData] = useState();
 
 	useEffect(() => {
-		const parseData = StockParse(data1);
+		const parseData = StockParse(dataValue);
 		setParseData(parseData)
 	}, [])
 

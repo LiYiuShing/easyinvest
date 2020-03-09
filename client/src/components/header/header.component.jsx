@@ -9,6 +9,8 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { AppBar, Toolbar, Typography, IconButton, MenuItem, Menu, Link} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import Search from '../search/search.component';
+
 import './header.styles.css';
 
 class Header extends React.Component {
@@ -37,6 +39,7 @@ class Header extends React.Component {
                         <Typography variant="h6" color="inherit" className="grow">
                             EASYINVEST
                         </Typography>
+                        <Search />
                         <IconButton
                             aria-owns={open ? "menu-appbar" : undefined}
                             aria-haspopup="true"

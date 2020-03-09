@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Search from '../../components/search/search.component';
-
 import './homepage.styles.css';
 import invest from '../../assets/invest.svg';
 import invest2 from '../../assets/invest2.svg'
@@ -87,7 +85,6 @@ const HomePage = () => (
             </div>
         </div>
 
-        <div><Search /></div>
     </div>
 );
 

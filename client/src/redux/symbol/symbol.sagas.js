@@ -9,11 +9,16 @@ export function* fetchSymbol(action) {
             () => fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${action.payload}&outputsize=compact&apikey=${process.env.REACT_APP_API_STOCK_KEY}`)
                 .then(res => res.json())
         );
-        yield put(fetchSymbolSuccess(result));
+        if(result["Error Message"] || result["Note"]) {
+            yield put(fetchSymbolFailure("error"));
+        }else{
+            yield put(fetchSymbolSuccess(result));
+        }
     } catch(err) {
-       yield put(fetchSymbolSuccess(fetchSymbolFailure(err)));
+       yield put(fetchSymbolFailure(err));
     } 
 }
+
 
 export function* fetchSymbolStart() {
     yield takeLatest(SymbolActionTypes.Symbol_Fetch_START, fetchSymbol);

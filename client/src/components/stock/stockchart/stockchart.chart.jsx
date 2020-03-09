@@ -1,4 +1,3 @@
-
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -99,7 +98,7 @@ class CandleStickChartWithMA extends React.Component {
 				ratio={ratio}
 				margin={{ left: 70, right: 70, top: 10, bottom: 30 }}
 				type={type}
-				seriesName="MSFT"
+				seriesName=""
 				data={data}
 				xScale={xScale}
 				xAccessor={xAccessor}
@@ -128,6 +127,7 @@ class CandleStickChartWithMA extends React.Component {
 
 					<OHLCTooltip origin={[-40, 0]}/>
 					<MovingAverageTooltip
+                        onClick={e => console.log(e)}
 						origin={[-38, 15]}
 						options={[
 							{
@@ -149,20 +149,6 @@ class CandleStickChartWithMA extends React.Component {
 								type: "TMA",
 								stroke: tma20.stroke(),
 								windowSize: tma20.options().windowSize,
-								echo: "some echo here",
-							},
-							{
-								yAccessor: ema20.accessor(),
-								type: "EMA",
-								stroke: ema20.stroke(),
-								windowSize: ema20.options().windowSize,
-								echo: "some echo here",
-							},
-							{
-								yAccessor: ema50.accessor(),
-								type: "EMA",
-								stroke: ema50.stroke(),
-								windowSize: ema50.options().windowSize,
 								echo: "some echo here",
 							},
 						]}
