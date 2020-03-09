@@ -17,7 +17,7 @@ const StockChart = (props) => {
 	return (
 		<div>
 			<div className='chartColor'>
-				<Chart data={parseData} />}
+				<Chart data={parseData} />
 			</div>
 		</div>
 	)

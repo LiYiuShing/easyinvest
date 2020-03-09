@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchSymbolStart } from '../../redux/symbol/symbol.actions';
-//import StockChart from '../../components/stock/stockchart/stockchart.component';
 import StockChart from '../../components/stock/stockchart/stockchart.component';
 
 

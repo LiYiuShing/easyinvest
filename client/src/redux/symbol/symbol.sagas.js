@@ -16,7 +16,7 @@ export function* fetchSymbol(action) {
 }
 
 export function* fetchSymbolStart() {
-    const action = yield takeLatest(SymbolActionTypes.Symbol_Fetch_START, fetchSymbol);
+    yield takeLatest(SymbolActionTypes.Symbol_Fetch_START, fetchSymbol);
 }
 
 export function* symbolSagas() {

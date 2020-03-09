@@ -1,5 +1,4 @@
 import firebase from 'firebase/app';
-import firebaseui from 'firebaseui';
 import 'firebase/auth';
 
 

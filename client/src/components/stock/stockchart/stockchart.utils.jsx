@@ -1,5 +1,3 @@
-import { timeParse } from "d3-time-format";
-
 const StockParse = (data) => {
     return Object.entries(data).reverse().map(([key, value]) => {
         const newObj = {}
@@ -17,7 +15,5 @@ const StockParse = (data) => {
         return newObj;
     });
 }
-
-const parseDate = timeParse("%Y-%m-%d");
 
 export default StockParse;
