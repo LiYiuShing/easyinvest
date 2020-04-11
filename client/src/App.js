@@ -6,6 +6,8 @@ import { createStructuredSelector } from 'reselect';
 import HomePage from './pages/homepage/homepage.component';
 import SignInPage from './pages/signinpage/siginpage.component.jsx';
 import SymbolPage from './pages/symbol/symbol.component';
+import { _404}  from './pages/error/errorpage.component';
+
 import Header from './components/header/header.component';
 import Footer from './components/footer/footer.component';
 
@@ -33,8 +35,9 @@ const App = ({checkUserSession, currentUser}) => {
                 )
               } 
             />
+            <Route path={`/symbol/:symbol`} component={SymbolPage} />
+            <Route path='' component={_404} />
           </Switch>
-          <Route exact path={`/symbol/:symbol`} component={SymbolPage} />
         <Footer />
     </div>
   );

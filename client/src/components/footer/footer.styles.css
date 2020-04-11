@@ -103,5 +103,6 @@
 }
 
 .footer-row {
-    margin-bottom: 8pt;
+    list-style: none;
+    text-align: right;
 }

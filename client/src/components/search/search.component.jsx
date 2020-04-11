@@ -1,7 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu, MenuItem } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
 import './search.styles.scss';
+
+const StyledMenu = withStyles({
+  paper: {
+    border: '1px solid #d3d4d5',
+  },
+})((props) => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
+  />
+));
 
 const Search = () => {
 
@@ -12,7 +34,8 @@ const Search = () => {
         error: null
     });
     const [typingTimeOut, setTypingTimeOut] = useState(0);
-    const [displaySearchBox, setDisplaySearchBox] = useState(true);
+    const [displaySearchBox, setDisplaySearchBox] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     useEffect(() => {
         if (typingTimeOut){
@@ -22,11 +45,15 @@ const Search = () => {
             fetchData(searchState)}, 2000));
     }, [searchState]);
 
-
     const handleOnSearch = (e) => {
-
-        setSearchState(e.target.value)
+        setSearchState(e.target.value);
+        setAnchorEl(e.currentTarget);
     }
+
+    const handleClose = () => {
+        setDisplaySearchBox(false);
+        setAnchorEl(null);
+    };
 
     const fetchData = (keywords) => {
         setSearchResult({loading: true})
@@ -57,39 +84,43 @@ const Search = () => {
                     id="searchInput"
                     type="text" 
                     onChange={handleOnSearch} 
-                    placeholder="" 
+                    placeholder="Stock Symbol"
                 />
             </div>
-
-            <div className='result' id={displaySearchBox ? 'searchBoxShowTrue' : 'searchBoxShowFalse'}>
                 {
                     loading || stockdata["Error Message"] ?
                     <div className='loading'>
                     </div>
                 :
-                    <ul className='search-result'>
-                    {stockdata  ?
-                        stockdata.bestMatches.map((item, key) => (
-                            <Link
-                                key={Object.values(item)[0]} 
-                                to={`/symbol/${Object.values(item)[0]}`} 
-                                onClick={() =>  {
-                                    document.getElementById('searchInput').value = '';
-                                    setDisplaySearchBox(false);
-                                }}
-                            >
-                                <li key={Object.values(item)[0]} className='search-result-content'>
-                                    <div className='search-result-symbol'>{Object.values(item)[0]}</div>
-                                    <div className='search-result-name'>{Object.values(item)[1]}</div>
-                                </li>
-                            </Link>
-                        ))
-                        :   
-                            <li></li>
-                    }
-                    </ul>
+                    <StyledMenu 
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl) && displaySearchBox}
+                        onClose={handleClose}
+                    >
+                        {stockdata  ?
+                            stockdata.bestMatches.map((item, key) => (
+                                <Link  key={key}
+                                    className = 'result-dropdown-content-link'
+                                    to={`/symbol/${Object.values(item)[0]}`} 
+                                    onClick={() =>  {
+                                        document.getElementById('searchInput').value = '';
+                                        handleClose();
+                                    }}
+                                >
+                                    <MenuItem key={key}>
+                                        <div>
+                                            <div className='search-result-symbol'>{Object.values(item)[0]}</div>
+                                            <div className='search-result-name'>{Object.values(item)[1]}</div>
+                                        </div>
+                                    </MenuItem>
+                                </Link>
+                            ))
+                            :   
+                                <div></div>
+                        }
+                    </StyledMenu>
                 }
-            </div>
         </div>
     )
     

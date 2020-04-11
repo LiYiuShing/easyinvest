@@ -1,0 +1,45 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+body {
+    padding: 0;
+    margin: 0
+}
+
+.notfound {
+    margin: 11em;
+    font-family: nunito,sans-serif;
+
+
+    h1 {
+        font-size: 65px;
+        font-weight: 700;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: #151723;
+        text-transform: uppercase;
+    }
+
+    h2{
+        font-weight: 400;
+        color: #151723;
+        text-transform: uppercase;
+        margin: 0;
+        font-size: 21px;
+    }
+
+    p {
+        color: #999fa5;
+        font-weight: 400;
+    }
+
+    a {
+        display: inline-block;
+        font-weight: 700;
+        border-radius: 40px;
+        text-decoration: none;
+        color: #388dbc;
+    }
+}

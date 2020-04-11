@@ -2,6 +2,9 @@
     flex-grow: 1;
 }
 
+.menu-text {
+    color: #646464;
+}
 .grow {
     flex-grow: 2;
     font-size: 25;

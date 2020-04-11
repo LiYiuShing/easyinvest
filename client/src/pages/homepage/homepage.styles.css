@@ -3,6 +3,7 @@
     max-width: 1080px;
     margin: 0 auto;
     position: relative;
+    z-index: 1;
 }
 
 .section {
@@ -37,7 +38,7 @@
     width: 100%;
     opacity: 0.79;
     z-index: 1;
-    background-color: rgba(127, 2, 165) 
+    background-color: rgb(0, 0, 0) 
 }
 
 .main-overlay-gradientVertical {
@@ -46,7 +47,7 @@
             right top,
             from(#160c2e),
             to(rgb(31, 12, 61)));
-    background: linear-gradient(90deg, #2a0142, rgb(73, 55, 81));
+    background: linear-gradient(90deg, #0d0d0e, rgb(97, 96, 97));
 }
 
 .main-mask {
@@ -95,11 +96,20 @@
     line-height: 1.7;
     text-align: center;
     font-size: 1.1 em;
+    margin-bottom: 25px;
+}
+
+.main-button {
+    background: initial;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid;
 }
 
 .card {
   text-align: center;
   padding: 16pt 0;
+  background-color: #fff;
 }
 
 @media (min-width: 992px) {
@@ -159,29 +169,34 @@
     padding: 72pt 0;
 }
 
-.other-inner {
-   display: -webkit-box;
-   display: -ms-flexbox;
-   display: flex;
-   -webkit-box-pack: justify;
-   -ms-flex-pack: justify;
-   justify-content: center;
-   -webkit-box-align: center;
-   -ms-flex-align: center;
-   align-items: center;
-   -webkit-box-orient: vertical;
-   -webkit-box-direction: normal;
-   -ms-flex-direction: column;
-   flex-direction: column;
+@media (min-width: 992px) {
+    .other-inner {
+        -js-display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+    }
+}
+
+.other-box {
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 0 0 #e5e5e5;
+    margin: 0 1.25em 1.25em 0;
+    padding: 3em;
+    text-align: center;
+    color: #777777;
 }
 
 .other-title {
     margin-bottom: 1.25em;
+    color: #646464;
+    font-size: 22px;
 }
 
 .other-text {
-    max-width: 36ch;
+    margin-bottom: 2em;
     text-align: left;
-    margin-left: auto;
-    margin-right: auto;
 }

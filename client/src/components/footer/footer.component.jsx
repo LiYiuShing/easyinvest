@@ -11,7 +11,7 @@ const Footer = () => (
                     </p>
                     <div className="footer-item">
                         <div className="footer-row">
-                            GitHub
+                            <li>© Li Yiu Shing. All rights reserved.</li>
                         </div>
                     </div>
                 </div>

@@ -67,17 +67,19 @@ class Header extends React.Component {
                                 to={'/'}
                                 style={{ textDecoration: "none" }}
                             >
-                                <MenuItem onClick={this.handleMenuClose}>Home</MenuItem>
+                                <MenuItem onClick={this.handleMenuClose}><p className="menu-text">Home</p></MenuItem>
                             </Link>
                             { this.props.currentUser ? (
-                                    <MenuItem onClick={this.props.signOutStart}>SignOut</MenuItem>
+                                    <MenuItem onClick={this.props.signOutStart}>
+                                        <p className="menu-text">SignOut</p>
+                                    </MenuItem>
                                 ) : (
                                     <Link 
                                         component={RouterLink}
                                         style={{ textDecoration: "none" }}
                                         to={'/signin'}
                                     >
-                                        <MenuItem onClick={this.handleMenuClose}>SignIn</MenuItem>
+                                        <MenuItem onClick={this.handleMenuClose}><p className="menu-text">SignIn</p></MenuItem>
                                     </Link>
                                 )
                             }

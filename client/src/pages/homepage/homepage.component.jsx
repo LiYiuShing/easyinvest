@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 import './homepage.styles.css';
 import invest from '../../assets/invest.svg';
@@ -6,7 +8,6 @@ import invest2 from '../../assets/invest2.svg'
 import invest3 from '../../assets/invest3.svg'
 
 const HomePage = () => (
-
     <div>
         <div className="main">
             <div className="main-overlay main-overlay-gradientVertical" />
@@ -16,14 +17,13 @@ const HomePage = () => (
                     <div className="main-content">
                         <div className="main-content-inner">
                             <h1 className="main-title">
-                                sds
+                                EasyInvest
                             </h1>
                             <div className="main-text">
-                                isdsadas sadsadasdsadassadsadsadas
-                                sadsadasdsadassadsadsadasasdasd
-                                sadsadasdsadassadsadsadas
-                                asdsadsadsadasdsa
-                                sadsadsadasdas
+                                An Ether - Backed Universal Basic Income
+                            </div>
+                            <div>
+                                <Link to="/signin" className="main-button">User Sign In</Link>
                             </div>
                         </div>
                     </div>
@@ -43,27 +43,28 @@ const HomePage = () => (
                         <div className="card-media">
                             <img alt="" src={invest} className="card-image"/>
                         </div>
-                        <h4>Card 1</h4>
+                        <h4>A Basic Stock Platform</h4>
                         <p className="card-text">
-                            Card1 content
+                            EasyInvest is designed to give investor a basic of stock data through the differnet graphs analysis.
                         </p>
                     </div>
                     <div className="card-item">
                         <div className="card-media">
                             <img alt="" src={invest2} className="card-image"/>
                         </div>
-                        <h4>Card 2</h4>
+                        <h4>React</h4>
                         <p className="card-text">
-                            Card2 content
+                            EasyInvest is designed to give investor a basic of stock data through the differnet graphs analysis.
+
                         </p>
                     </div>
                     <div className="card-item">
                         <div className="card-media">
                             <img alt="" src={invest3} className="card-image"/>
                         </div>
-                        <h4>Card 3</h4>
+                        <h4>Redux</h4>
                         <p className="card-text">
-                            Card3 content
+                            EasyInvest is designed to give investor a basic of stock data through the differnet graphs analysis.
                         </p>
                     </div>
                 </div>
@@ -73,13 +74,22 @@ const HomePage = () => (
         <div className="other section">
             <div className="container">
                 <div className="other-inner">
-                    <div className="other-title">
-                        <h3>
-                            sdasd
-                        </h3>
+                    <div className="other-box">
+                        <div className="other-title">Stock</div>
+                        <p className="other-text">Get the latest stock market news, stock information & quotes, data analysis reports, as well as a general overview of the market landscape from Nasdaq.</p>
+                        <Link to="/" className="main-button">Explore More</Link>
                     </div>
-                    <div className="other-text">
-                        sadsadsadsadksa
+               
+                    <div className="other-box">
+                        <div className="other-title">Cryptocurrency</div>
+                        <p className="other-text">Explore the top 50 cryptocurrencies with Coinbase, including cryptocurrency price charts, crypto descriptions, and the latest price of Bitcoin and Ethereum.</p>
+                        <Link to="/" className="main-button">Explore More</Link>
+                    </div>
+
+                    <div className="other-box">
+                        <div className="other-title">Futures</div>
+                        <p className="other-text">Get the latest data from stocks futures of major world indexes. Find updated quotes on top stock market index futures.</p>
+                        <Link to="/" className="main-button">Explore More</Link>
                     </div>
                 </div>
             </div>
