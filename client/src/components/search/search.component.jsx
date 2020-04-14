@@ -98,24 +98,29 @@ const Search = () => {
                         open={Boolean(anchorEl) && displaySearchBox}
                         onClose={handleClose}
                     >
-                        {stockdata  ?
-                            stockdata.bestMatches.map((item, key) => (
-                                <Link  key={key}
-                                    className = 'result-dropdown-content-link'
-                                    to={`/symbol/${Object.values(item)[0]}`} 
-                                    onClick={() =>  {
-                                        document.getElementById('searchInput').value = '';
-                                        handleClose();
-                                    }}
-                                >
-                                    <MenuItem key={key}>
-                                        <div>
-                                            <div className='search-result-symbol'>{Object.values(item)[0]}</div>
-                                            <div className='search-result-name'>{Object.values(item)[1]}</div>
-                                        </div>
-                                    </MenuItem>
-                                </Link>
-                            ))
+                        {stockdata  ? 
+                            stockdata.bestMatches.map((item, key) => {
+                                try { 
+                                    return (
+                                        <Link  key={key}
+                                            className = 'result-dropdown-content-link'
+                                            to={`/symbol/${Object.values(item)[0]}`} 
+                                            onClick={() =>  {
+                                                document.getElementById('searchInput').value = '';
+                                                handleClose();
+                                            }}
+                                        >
+                                            <MenuItem key={key}>
+                                                <div>
+                                                    <div className='search-result-symbol'>{Object.values(item)[0]}</div>
+                                                    <div className='search-result-name'>{Object.values(item)[1]}</div>
+                                                </div>
+                                            </MenuItem>
+                                        </Link>
+                                )} catch(err){
+                                    return(<div>ERROR</div>)
+                                }
+                            })
                             :   
                                 <div></div>
                         }

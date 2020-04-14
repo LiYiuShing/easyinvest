@@ -10,7 +10,11 @@ export function* fetchSymbol(action) {
                 .then(res => res.json())
         );
         if(result["Error Message"] || result["Note"]) {
-            yield put(fetchSymbolFailure("error"));
+            if(result["Error Message"]) {
+                yield put(fetchSymbolFailure(result["Error Message"]));
+            } else {
+                yield put(fetchSymbolFailure(result["Note"]));
+            }
         }else{
             yield put(fetchSymbolSuccess(result));
         }
