@@ -26,6 +26,8 @@ const SymbolPage = ({fetchSymbolStart, symbolData, loading, error}) => {
 
     const getStockDatails = (stockSymbol) => {
         try {
+            setstockDataState('')
+            setstockHistory('')
             fetch(`http://127.0.0.1:5000/api/stock/info/${stockSymbol}`)
                 .then(res => res.json())
                 .then(data => setstockDataState(data))
@@ -38,7 +40,7 @@ const SymbolPage = ({fetchSymbolStart, symbolData, loading, error}) => {
         }
     }
     
-    if(loading) return (<div></div>);
+    //if(loading) return (<div>LOADING</div>);
     //if(error) return (<div><_404 /></div>);
 
     return (
@@ -47,6 +49,7 @@ const SymbolPage = ({fetchSymbolStart, symbolData, loading, error}) => {
                 <StockDetail
                     data={stockDataState}
                     history={stockHistory}
+                    symbolData={symbolData}
                 />
             </div>
   

@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import parseAmount from '../../../utils/parseAmount';
 
 import StockMonthlyReturn from '../stockdetail/stockmonthlyreturn/stockmonthlyreturn.component';
+import StockChart from '../stockdetail/stockchart/stockchart.component';
 
 import './stockdetail.styles.scss';
 
@@ -27,8 +28,11 @@ const useStyles = makeStyles((theme) => ({
     control: {
         padding: theme.spacing(3),
         },
+    MuiTypography: {
+        body1: 'body1'
+    },
     body1: {
-        fontSize: '14px',
+        fontSize: '14px'
     },
     h4: {
         fontSize: '28px',
@@ -45,6 +49,13 @@ const useStyles = makeStyles((theme) => ({
     svg: {
         minWidth: '28px',
         maxwidth: '28px'
+    },
+    space: {
+        marginTop: '8px'
+    },
+    item_padding: {
+        padding: '5px 0',
+        color: '#808080',
     }
 }));
 
@@ -72,8 +83,8 @@ const StockDetailHeader = (props) => {
             </div>
         )} else { return(
             <div>
-                <Typography variant="h4" className={`${classes.green} ${classes.h4}`}><Down className='svg' />{price}</Typography>
-                <Typography className={`${classes.red} ${classes.body1}`} variant="h6">-{change} -{changeInPercent}%</Typography>
+                <Typography variant="h4" className={`${classes.red} ${classes.h4}`}><Down className='svg' />{price}</Typography>
+                <Typography className={`${classes.red} ${classes.body1}`} variant="h6">{change} {changeInPercent}%</Typography>
             </div>
         )}
     }
@@ -98,14 +109,14 @@ const StockInfo = (props) => {
         const classes = useStyles();
 
         return (
-            <Grid item xs={6} sm={4} md={3} container className={classes.control}>
+            <Grid item xs={6} sm={4} md={4} container className={classes.control}>
                 {
                     keyIndex.map((item, key) => (
                         <Grid container key={key}>
-                            <Grid item xs={7} align='right'>
+                            <Grid item xs={7}>
                                 <Typography className={classes.body1} variant="body1">{item.toUpperCase()}: </Typography>
                             </Grid>
-                            <Grid item xs={5} align='right'>
+                            <Grid item xs={5}>
                                 <Typography className={classes.body1} variant="body1">{parseAmount(data[item])}</Typography>
                             </Grid> 
                         </Grid>
@@ -118,17 +129,18 @@ const StockInfo = (props) => {
 
 const StockDetail = (props) => {
     const classes = useStyles();
-    const data = props.data;
-    const history = props.history;
+    const { data, history } = props
     const dataKeyValue = {};
     const today = new Date;
 
     if(data) {
             keyIndex.map((item, key) => {
                 dataKeyValue[item.toUpperCase()] = data[item];
-            })
+            }) 
     }
     
+
+
     return (
         <div>
             {data && history ? (
@@ -150,8 +162,43 @@ const StockDetail = (props) => {
                     </Paper>
 
                     <Paper className={classes.root} elevation={3}>
-                        <Typography variant="h8">Monthly Performances</Typography>
-                        <StockMonthlyReturn />
+                        <Typography>Performances</Typography>
+                        <StockChart history={history} />
+                        <StockMonthlyReturn history={history} />
+                    </Paper>
+
+                    <Paper className={classes.root} elevation={3}>
+                        <Grid container>
+                            <Typography>About {data['shortName']}</Typography>
+                            <Grid>{data['longBusinessSummary']}</Grid>
+                        </Grid>
+                        <Grid container className={classes.space}>
+                            <Grid item container className={classes.item_padding}>
+                                <Grid item md={1}> 
+                                    <Typography variant="body2">Sector</Typography>
+                                </Grid>
+                                <Grid item md={4}> 
+                                    <Typography variant="body2">{data['sector']}</Typography>
+                                </Grid>
+                            </Grid>
+                            <Grid item container className={classes.item_padding}>
+                                <Grid item md={1}> 
+                                    <Typography variant="body2">Industry</Typography>
+                                </Grid>
+                                <Grid item md={4}> 
+                                    <Typography variant="body2"><a>{data['industry']}</a></Typography>
+                                </Grid>
+                            </Grid>
+                            <Grid item container className={classes.item_padding}>
+                                <Grid item md={1}> 
+                                    <Typography variant="body2">Website</Typography>
+                                </Grid>
+                                <Grid item md={4}> 
+                                    <Typography variant="body2"><a>{data['website']}</a></Typography>
+                                </Grid>
+                            </Grid>
+
+                        </Grid>
                     </Paper>
                 </div>
                 ) : (

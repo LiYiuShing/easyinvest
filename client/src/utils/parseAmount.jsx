@@ -11,5 +11,5 @@ export default function parseAmount(amount) {
 
     ? (Math.abs(Number(amount)) / 1.0e+3).toFixed(2) + "K"
 
-    : Math.abs(Number(amount));
+    : (Math.abs(Number(amount))).toFixed(2);
 }

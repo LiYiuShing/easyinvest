@@ -1,3 +1,4 @@
+
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -7,13 +8,15 @@ import { timeFormat } from "d3-time-format";
 import { ChartCanvas, Chart } from "react-stockcharts";
 import {
 	BarSeries,
+	AreaSeries,
+	AlternatingFillAreaSeries,
 	CandlestickSeries,
-	LineSeries,
+	StraightLine,
 } from "react-stockcharts/lib/series";
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
 import {
 	CrossHairCursor,
-	CurrentCoordinate,
+	EdgeIndicator,
 	MouseCoordinateX,
 	MouseCoordinateY,
 } from "react-stockcharts/lib/coordinates";
@@ -21,54 +24,27 @@ import {
 import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import {
 	OHLCTooltip,
-	MovingAverageTooltip,
+	SingleValueTooltip,
 } from "react-stockcharts/lib/tooltip";
-import { ema, wma, sma, tma } from "react-stockcharts/lib/indicator";
+import { ema, forceIndex } from "react-stockcharts/lib/indicator";
 import { fitWidth } from "react-stockcharts/lib/helper";
 import { last } from "react-stockcharts/lib/utils";
 
-class CandleStickChartWithMA extends React.Component {
+class CandleStickChartWithForceIndexIndicator extends React.Component {
 	render() {
-		const ema20 = ema()
-			.options({
-				windowSize: 20, // optional will default to 10
-				sourcePath: "close", // optional will default to close as the source
-			})
-			.skipUndefined(true) // defaults to true
-			.merge((d, c) => {d.ema20 = c;}) // Required, if not provided, log a error
-			.accessor(d => d.ema20) // Required, if not provided, log an error during calculation
-            .stroke("blue"); // Optional
+		const fi = forceIndex()
+			.merge((d, c) => {d.fi = c;})
+			.accessor(d => d.fi);
 
-		const sma20 = sma()
-			.options({ windowSize: 20 })
-			.merge((d, c) => {d.sma20 = c;})
-			.accessor(d => d.sma20);
-
-		const wma20 = wma()
-			.options({ windowSize: 20 })
-			.merge((d, c) => {d.wma20 = c;})
-			.accessor(d => d.wma20);
-
-		const tma20 = tma()
-			.options({ windowSize: 20 })
-			.merge((d, c) => {d.tma20 = c;})
-			.accessor(d => d.tma20);
-
-		const ema50 = ema()
-			.options({ windowSize: 50 })
-			.merge((d, c) => {d.ema50 = c;})
-			.accessor(d => d.ema50);
-
-		const smaVolume50 = sma()
-			.options({ windowSize: 20, sourcePath: "volume" })
-			.merge((d, c) => {d.smaVolume50 = c;})
-			.accessor(d => d.smaVolume50)
-			.stroke("#4682B4")
-			.fill("#4682B4");
+		const fiEMA13 = ema()
+			.id(1)
+			.options({ windowSize: 13, sourcePath: "fi" })
+			.merge((d, c) => {d.fiEMA13 = c;})
+			.accessor(d => d.fiEMA13);
 
 		const { type, data: initialData, width, ratio } = this.props;
 
-		const calculatedData = ema20(sma20(wma20(tma20(ema50(smaVolume50(initialData))))));
+		const calculatedData = fiEMA13(fi(initialData));
 		const xScaleProvider = discontinuousTimeScaleProvider
 			.inputDateAccessor(d => d.date);
 		const {
@@ -80,97 +56,127 @@ class CandleStickChartWithMA extends React.Component {
 
 		const start = xAccessor(last(data));
 		const end = xAccessor(data[Math.max(0, data.length - 150)]);
-        const xExtents = [start, end];
+		const xExtents = [start, end];
 
-        const margin = { left: 70, right: 70, top: 20, bottom: 30 };
-		const height = 500;
-        
-        const gridHeight = height - margin.top - margin.bottom;
-		const gridWidth = width - margin.left - margin.right;
+		const height = 400;
 
-		const showGrid = true;
-		const yGrid = showGrid ? { innerTickSize: -1 * gridWidth, tickStrokeOpacity: 0.2 } : {};
-		const xGrid = showGrid ? { innerTickSize: -1 * gridHeight, tickStrokeOpacity: 0.2 } : {};
+		var margin = {left: 70, right: 70, top:20, bottom: 30};
+		var gridHeight = height - margin.top - margin.bottom;
+		var gridWidth = width - margin.left - margin.right;
+
+		var showGrid = true;
+		var yGrid = showGrid ? { 
+			innerTickSize: -1 * gridWidth,
+			tickStrokeDasharray: 'Solid',
+			tickStrokeOpacity: 0.2,
+			tickStrokeWidth: 1
+		} : {};
+		var xGrid = showGrid ? { 
+			innerTickSize: -1 * gridHeight,
+			tickStrokeDasharray: 'Solid',
+			tickStrokeOpacity: 0.2,
+			tickStrokeWidth: 1
+		} : {};
 
 		return (
-			<ChartCanvas height={400}
+			<ChartCanvas height={550}
 				width={width}
 				ratio={ratio}
-				margin={{ left: 70, right: 70, top: 10, bottom: 30 }}
+				margin={{ left: 70, right: 70, top: 20, bottom: 30 }}
 				type={type}
-				seriesName=""
+				seriesName="MSFT"
 				data={data}
 				xScale={xScale}
 				xAccessor={xAccessor}
 				displayXAccessor={displayXAccessor}
 				xExtents={xExtents}
 			>
-				<Chart id={1}
-					yExtents={[d => [d.high, d.low], sma20.accessor(), wma20.accessor(), tma20.accessor(), ema20.accessor(), ema50.accessor()]}
-					padding={{ top: 10, bottom: 20 }}
+				<Chart id={1}  height={300}
+					yExtents={d => [d.high, d.low]}
+					padding={{ top: 10, right: 0, bottom: 20, left: 0 }}
 				>
-					<XAxis axisAt="bottom" orient="bottom" {...xGrid} tickStroke="#FFFFFF"/>
-					<YAxis axisAt="right" orient="right" ticks={10} {...yGrid} tickStroke="#FFFFFF" />
-
+					<YAxis axisAt="right" orient="right" ticks={5} {...yGrid} />
+					<XAxis axisAt="bottom" orient="bottom" showTicks={false} outerTickSize={0} {...xGrid} />
 					<MouseCoordinateY
 						at="right"
 						orient="right"
 						displayFormat={format(".2f")} />
 
 					<CandlestickSeries />
-					<LineSeries yAccessor={sma20.accessor()} stroke={sma20.stroke()}/>
-					<LineSeries yAccessor={wma20.accessor()} stroke={wma20.stroke()}/>
-					<LineSeries yAccessor={tma20.accessor()} stroke={tma20.stroke()}/>
-					<CurrentCoordinate yAccessor={sma20.accessor()} fill={sma20.stroke()} />
-					<CurrentCoordinate yAccessor={wma20.accessor()} fill={wma20.stroke()} />
-					<CurrentCoordinate yAccessor={tma20.accessor()} fill={tma20.stroke()} />
 
-					<OHLCTooltip origin={[-40, 0]}/>
-					<MovingAverageTooltip
-                        onClick={e => console.log(e)}
-						origin={[-38, 15]}
-						options={[
-							{
-								yAccessor: sma20.accessor(),
-								type: "SMA",
-								stroke: sma20.stroke(),
-								windowSize: sma20.options().windowSize,
-								echo: "some echo here",
-							},
-							{
-								yAccessor: wma20.accessor(),
-								type: "WMA",
-								stroke: wma20.stroke(),
-								windowSize: wma20.options().windowSize,
-								echo: "some echo here",
-							},
-							{
-								yAccessor: tma20.accessor(),
-								type: "TMA",
-								stroke: tma20.stroke(),
-								windowSize: tma20.options().windowSize,
-								echo: "some echo here",
-							},
-						]}
+					<EdgeIndicator itemType="last" orient="right" edgeAt="right"
+						yAccessor={d => d.close}
+						fill={d => d.close > d.open ? "#6BA583" : "#FF0000"} />
+					<OHLCTooltip origin={[-40, -10]}/>
+
+				</Chart>
+				<Chart id={2} height={150}
+					yExtents={d => d.volume}
+					origin={(w, h) => [0, h - 350]}
+				>
+					<YAxis axisAt="left" orient="left" ticks={5} tickFormat={format(".2s")}/>
+					<MouseCoordinateY
+						at="left"
+						orient="left"
+						displayFormat={format(".4s")} />
+
+					<BarSeries
+						yAccessor={d => d.volume}
+						fill={(d) => d.close > d.open ? "#6BA583" : "#FF0000"}
+						opacity={0.5} />
+				</Chart>
+				<Chart id={3} height={100}
+					yExtents={fi.accessor()}
+					origin={(w, h) => [0, h - 200]}
+					padding={{ top: 10, right: 0, bottom: 10, left: 0 }}
+				>
+					<XAxis axisAt="bottom" orient="bottom" showTicks={false} outerTickSize={0} />
+					<YAxis axisAt="right" orient="right" ticks={4} tickFormat={format(".2s")}/>
+					<MouseCoordinateY
+						at="right"
+						orient="right"
+						displayFormat={format(".4s")} />
+
+					<AreaSeries baseAt={scale => scale(0)} yAccessor={fi.accessor()} />
+					<StraightLine yValue={0} />
+
+					<SingleValueTooltip
+						yAccessor={fi.accessor()}
+						yLabel="ForceIndex (1)"
+						yDisplayFormat={format(".4s")}
+						origin={[-40, 15]}
 					/>
 				</Chart>
-				<Chart id={2}
-					yExtents={[d => d.volume, smaVolume50.accessor()]}
-					height={150} origin={(w, h) => [0, h - 150]}
+				<Chart id={4} height={100}
+					yExtents={fiEMA13.accessor()}
+					origin={(w, h) => [0, h - 100]}
+					padding={{ top: 10, right: 0, bottom: 10, left: 0 }}
 				>
+					<XAxis axisAt="bottom" orient="bottom" />
+					<YAxis axisAt="right" orient="right" ticks={4} tickFormat={format(".2s")}/>
 
 					<MouseCoordinateX
 						at="bottom"
 						orient="bottom"
 						displayFormat={timeFormat("%Y-%m-%d")} />
 					<MouseCoordinateY
-						at="left"
-						orient="left"
+						at="right"
+						orient="right"
 						displayFormat={format(".4s")} />
 
-					<BarSeries yAccessor={d => d.volume} fill={""} opacity={0.3}/>
-					<CurrentCoordinate yAccessor={smaVolume50.accessor()} fill={smaVolume50.stroke()} />
-					<CurrentCoordinate yAccessor={d => d.volume} fill="#9B0A47" />
+					{/* <AreaSeries baseAt={scale => scale(0)} yAccessor={fiEMA13.accessor()} /> */}
+					<AlternatingFillAreaSeries
+						baseAt={0}
+						yAccessor={fiEMA13.accessor()}
+					/>
+					<StraightLine yValue={0} />
+
+					<SingleValueTooltip
+						yAccessor={fiEMA13.accessor()}
+						yLabel={`ForceIndex (${fiEMA13.options().windowSize})`}
+						yDisplayFormat={format(".4s")}
+						origin={[-40, 15]}
+					/>
 				</Chart>
 				<CrossHairCursor />
 			</ChartCanvas>
@@ -178,20 +184,16 @@ class CandleStickChartWithMA extends React.Component {
 	}
 }
 
-CandleStickChartWithMA.propTypes = {
+CandleStickChartWithForceIndexIndicator.propTypes = {
 	data: PropTypes.array.isRequired,
 	width: PropTypes.number.isRequired,
 	ratio: PropTypes.number.isRequired,
 	type: PropTypes.oneOf(["svg", "hybrid"]).isRequired,
 };
 
-CandleStickChartWithMA.defaultProps = {
-    type: "svg",
-	mouseMoveEvent: false,
-	panEvent: false,
-	zoomEvent: false,
-	clamp: false,
+CandleStickChartWithForceIndexIndicator.defaultProps = {
+	type: "svg",
 };
-CandleStickChartWithMA = fitWidth(CandleStickChartWithMA);
+CandleStickChartWithForceIndexIndicator = fitWidth(CandleStickChartWithForceIndexIndicator);
 
-export default CandleStickChartWithMA;
+export default CandleStickChartWithForceIndexIndicator;

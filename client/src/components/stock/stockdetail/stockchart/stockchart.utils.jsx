@@ -1,16 +1,12 @@
-const StockParse = (data) => {
-    return Object.entries(data).reverse().map(([key, value]) => {
+const StockParse = (history) => {
+    return Object.entries(history.Open).map(([key, value], i) => {
         const newObj = {}
         newObj["date"] = new Date(key)
-        newObj["open"] = Object.values(value)[0]
-        newObj["high"] = Object.values(value)[1]
-        newObj["low"] = Object.values(value)[2]
-        newObj["close"] = Object.values(value)[3]
-        newObj["volume"] = Object.values(value)[5]
-        newObj["split"] = ""
-        newObj["dividend"] = Object.values(value)[6]
-        newObj["absoluteChange"] = ""
-        newObj["percentChange"] = ""
+        newObj["open"] = Object.values(history.Open)[i]
+        newObj["high"] = Object.values(history.High)[i]
+        newObj["low"] = Object.values(history.Low)[i]
+        newObj["close"] = Object.values(history.Close)[i]
+        newObj["volume"] = Object.values(history.Volume)[i]
 
         return newObj;
     });

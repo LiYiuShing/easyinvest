@@ -10,10 +10,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 const StockMonthlyReturn = (props) => {
+    const { history } = props
     const createData = (Year, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec) => {
     return { Year, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec };
     }
 
+    
     return(
         <div></div>
     )
