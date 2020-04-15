@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         padding: '16px',
         margin: '16px 0',
-        color: '#151723',
+        color: '#373a3c',
         fontSize: '14px',
     },
     control: {
@@ -78,12 +78,12 @@ const StockDetailHeader = (props) => {
 
         if (change >= 0) {return (
             <div>
-                <Typography variant="h4" className={`${classes.green} ${classes.h4}`}><Up className='svg' />{price}</Typography>
+                <Typography variant="h4" className={`${classes.green} ${classes.h4}`}><Up className='svg' />{(price).toFixed(2)}</Typography>
                 <Typography className={`${classes.green} ${classes.body1}`} variant="h6">+{change} +{changeInPercent}%</Typography>
             </div>
         )} else { return(
             <div>
-                <Typography variant="h4" className={`${classes.red} ${classes.h4}`}><Down className='svg' />{price}</Typography>
+                <Typography variant="h4" className={`${classes.red} ${classes.h4}`}><Down className='svg' />{(price).toFixed(2)}</Typography>
                 <Typography className={`${classes.red} ${classes.body1}`} variant="h6">{change} {changeInPercent}%</Typography>
             </div>
         )}
@@ -164,7 +164,11 @@ const StockDetail = (props) => {
                     <Paper className={classes.root} elevation={3}>
                         <Typography>Performances</Typography>
                         <StockChart history={history} />
-                        <StockMonthlyReturn history={history} />
+                        
+                        <Grid container className={classes.root}>
+                            <Typography>Monthly Performances</Typography>
+                            <StockMonthlyReturn history={history} />
+                        </Grid>
                     </Paper>
 
                     <Paper className={classes.root} elevation={3}>

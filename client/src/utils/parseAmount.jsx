@@ -1,5 +1,10 @@
 export default function parseAmount(amount) {
-    return Math.abs(Number(amount)) >= 1.0e+9
+
+    return amount == undefined
+    
+    ? "0.00"
+
+    : Math.abs(Number(amount)) >= 1.0e+9
 
     ? (Math.abs(Number(amount)) / 1.0e+9).toFixed(2) + "B"
     // Six Zeroes for Millions 

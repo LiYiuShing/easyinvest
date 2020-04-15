@@ -84,7 +84,7 @@ const Search = () => {
                     id="searchInput"
                     type="text" 
                     onChange={handleOnSearch} 
-                    placeholder="Stock Symbol"
+                    placeholder="Symbol - AAPL"
                 />
             </div>
                 {
