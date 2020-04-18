@@ -1,6 +1,6 @@
 export default function parseAmount(amount) {
 
-    return amount == undefined
+    return amount === undefined
     
     ? "0.00"
 

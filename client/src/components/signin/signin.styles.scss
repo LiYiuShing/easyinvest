@@ -2,11 +2,6 @@ $white: #fff;
 $google-blue: #4285f4;
 $button-active-blue: #1669F2;
 
-.signin-section {
-    background-color: #fff;;
-    margin: 4.25em;
-}
-
 .google-btn {
     width: 184px;
     height: 42px;
@@ -25,9 +20,8 @@ $button-active-blue: #1669F2;
     }
 
     .google-icon {
-        position: absolute;
         margin-top: 11px;
-        margin-left: 11px;
+        margin-left: 0px;
         width: 18px;
         height: 18px;
     }

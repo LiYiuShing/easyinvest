@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import { _404 } from './../error/errorpage.component';
 
 import { fetchSymbolStart } from '../../redux/symbol/symbol.actions';
-import StockChart from '../../components/stock/stockdetail/stockchart/stockchart.component';
+
 import StockDetail from '../../components/stock/stockdetail/stockdetail.component';
 
-import './symbol.component.scss';
 
-const SymbolPage = ({fetchSymbolStart, symbolData, loading, error}) => {
+const SymbolPage = ({fetchSymbolStart, symbolData, loading }) => {
     const { symbol } = useParams();
     const mounted = useRef();
     const [stockDataState, setstockDataState] = useState(null);
@@ -40,7 +39,6 @@ const SymbolPage = ({fetchSymbolStart, symbolData, loading, error}) => {
         }
     }
     
-    //if(loading) return (<div>LOADING</div>);
     //if(error) return (<div><_404 /></div>);
 
     return (

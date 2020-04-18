@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-import './homepage.styles.css';
+import './homepage.styles.scss';
 import invest from '../../assets/invest.svg';
 import invest2 from '../../assets/invest2.svg'
 import invest3 from '../../assets/invest3.svg'
@@ -17,12 +17,13 @@ const HomePage = () => (
                     <div className="main-content">
                         <div className="main-content-inner">
                             <h1 className="main-title">
-                                EasyInvest
+                                Get Easy into Investment
                             </h1>
                             <div className="main-text">
-                                An Ether - Backed Universal Basic Income
+                                Live quotes, stock charts and expert trading ideas. 
+                                EasyInvest is a social network for traders and investors on Stock, Futures and Forex markets! 
                             </div>
-                            <div>
+                            <div className="main-wrapper">
                                 <Link to="/signin" className="main-button">User Sign In</Link>
                             </div>
                         </div>
@@ -31,12 +32,30 @@ const HomePage = () => (
             </div>
         </div>
 
-        <div className="card section">
+        <div className="example section">
             <div className="container">
-                <h2>
-                    Hello World！
-                </h2>
+                <h3>
+                    Understand the trend of US Market, Stocks and More.... . 
+                </h3>
+                <p>
+                    The stock market, just like the price of individual stocks, tends to trend. ... Uptrends are characterized by prices making higher highs and higher lows. Downtrends are characterized by lower price highs and lower price lows.
+                </p>
+                <p>
+                    The stock market, just like the price of individual stocks, tends to trend. ... Uptrends are characterized by prices making higher highs and higher lows. Downtrends are characterized by lower price highs and lower price lows.
+                </p>
+                <p>
+                    The stock market, just like the price of individual stocks, tends to trend. ... Uptrends are characterized by prices making higher highs and higher lows. Downtrends are characterized by lower price highs and lower price lows.
+                </p>
+                <p>
+                    The stock market, just like the price of individual stocks, tends to trend. ... Uptrends are characterized by prices making higher highs and higher lows. Downtrends are characterized by lower price highs and lower price lows.
+                </p>
+                <p>
+                    The stock market, just like the price of individual stocks, tends to trend. ... Uptrends are characterized by prices making higher highs and higher lows. Downtrends are characterized by lower price highs and lower price lows.
+                </p>
             </div>
+        </div>
+
+        <div className="card section">
             <div className="container">
                 <div className="card-inner">
                     <div className="card-item">

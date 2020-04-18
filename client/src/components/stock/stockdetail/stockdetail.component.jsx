@@ -1,10 +1,10 @@
-import React, {useEffect, useState}  from 'react';
-
-import PropTypes from 'prop-types';
-import { GridList, Grid, Typography } from '@material-ui/core';
-import { withStyles, makeStyles } from '@material-ui/core/styles'
+import React from 'react';
+import { Grid, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper';
 import parseAmount from '../../../utils/parseAmount';
+
+import Loader from '../../loader/loader';
 
 import StockMonthlyReturn from '../stockdetail/stockmonthlyreturn/stockmonthlyreturn.component';
 import StockChart from '../stockdetail/stockchart/stockchart.component';
@@ -131,7 +131,7 @@ const StockDetail = (props) => {
     const classes = useStyles();
     const { data, history } = props
     const dataKeyValue = {};
-    const today = new Date;
+    const today = new Date();
 
     if(data) {
             keyIndex.map((item, key) => {
@@ -162,53 +162,76 @@ const StockDetail = (props) => {
                     </Paper>
 
                     <Paper className={classes.root} elevation={3}>
-                        <Typography>Performances</Typography>
-                        <StockChart history={history} />
-                        
-                        <Grid container className={classes.root}>
-                            <Typography>Monthly Performances</Typography>
-                            <StockMonthlyReturn history={history} />
-                        </Grid>
+                            <Grid>
+                                <Typography>Performances</Typography>
+                                <StockChart history={history} />
+                            </Grid>
+                            <Grid>
+                                <Typography>Monthly Performances</Typography>
+                                <StockMonthlyReturn history={history} />
+                            </Grid>
                     </Paper>
 
                     <Paper className={classes.root} elevation={3}>
-                        <Grid container>
-                            <Typography>About {data['shortName']}</Typography>
-                            <Grid>{data['longBusinessSummary']}</Grid>
-                        </Grid>
-                        <Grid container className={classes.space}>
-                            <Grid item container className={classes.item_padding}>
-                                <Grid item md={1}> 
-                                    <Typography variant="body2">Sector</Typography>
+                        <Grid container className={classes.root}>
+                            <Grid container>
+                                <Typography>About {data['shortName']}</Typography>
+                                <Grid>{data['longBusinessSummary']}</Grid>
+                            </Grid>
+                            <Grid container className={classes.space}>
+                                <Grid item container className={classes.item_padding}>
+                                    <Grid item md={1}> 
+                                        <Typography variant="body2">Sector</Typography>
+                                    </Grid>
+                                    <Grid item md={4}> 
+                                        <Typography variant="body2">{data['sector']}</Typography>
+                                    </Grid>
                                 </Grid>
-                                <Grid item md={4}> 
-                                    <Typography variant="body2">{data['sector']}</Typography>
+                                <Grid item container className={classes.item_padding}>
+                                    <Grid item md={1}> 
+                                        <Typography variant="body2">Industry</Typography>
+                                    </Grid>
+                                    <Grid item md={4}> 
+                                        <Typography variant="body2">{data['industry']}</Typography>
+                                    </Grid>
+                                </Grid>
+                                <Grid item container className={classes.item_padding}>
+                                    <Grid item md={1}> 
+                                        <Typography variant="body2">Website</Typography>
+                                    </Grid>
+                                    <Grid item md={4}> 
+                                        <Typography variant="body2"><a href={data['website']}>{data['website']}</a></Typography>
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item container className={classes.item_padding}>
-                                <Grid item md={1}> 
-                                    <Typography variant="body2">Industry</Typography>
-                                </Grid>
-                                <Grid item md={4}> 
-                                    <Typography variant="body2"><a>{data['industry']}</a></Typography>
-                                </Grid>
-                            </Grid>
-                            <Grid item container className={classes.item_padding}>
-                                <Grid item md={1}> 
-                                    <Typography variant="body2">Website</Typography>
-                                </Grid>
-                                <Grid item md={4}> 
-                                    <Typography variant="body2"><a>{data['website']}</a></Typography>
-                                </Grid>
-                            </Grid>
-
                         </Grid>
                     </Paper>
                 </div>
                 ) : (
-                    <Paper className={classes.root} elevation={3}>
-                        LOAD緊呀屌
-                    </Paper>
+                    <div>
+                        <Paper className={classes.root} elevation={3}>
+                            <Loader />
+                        </Paper>
+                        <Paper className={classes.root} elevation={3}>
+                            <Grid md={12}>
+                                 <Loader />
+                            </Grid>
+                            <Grid md={12}>
+                                 <Loader />
+                            </Grid>
+                            <Grid md={12}>
+                                 <Loader />
+                            </Grid>
+                        </Paper>
+                        <Paper className={classes.root} elevation={3}>
+                            <Grid md={12}>
+                                <Loader />
+                            </Grid>
+                            <Grid md={12}>
+                                <Loader />
+                            </Grid>
+                        </Paper>
+                    </div>
             )}
         </div>
     )

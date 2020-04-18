@@ -1,95 +1,76 @@
-import React from 'react';
-import {Link as RouterLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { signOutStart } from '../../redux/user/user.actions';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-import { AppBar, Toolbar, Typography, IconButton, MenuItem, Menu, Link} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChild } from "@fortawesome/free-solid-svg-icons";
 
 import Search from '../search/search.component';
 
-import './header.styles.css';
+import './header.styles.scss';
 
-class Header extends React.Component {
+const Header = ({ currentUser, signOutStart}) => {
 
-    state = {
-        anchor: null,
-        redirect: false
-    };
 
-    handleMenu = event => {
-        this.setState({ anchor: event.currentTarget });
-    }
-
-    handleMenuClose = () => {
-        this.setState({ anchor: null })
-    }
-
-    render() {
-        const { anchor } = this.state;
-        const open = Boolean(anchor);
-
-        return (
-            <div className="root">
-                <AppBar position="static">
-                    <Toolbar>
-                        <Typography variant="h6" color="inherit" className="grow">
-                            EASYINVEST
-                        </Typography>
-                        <Search />
-                        <IconButton
-                            aria-owns={open ? "menu-appbar" : undefined}
-                            aria-haspopup="true"
-                            onClick={this.handleMenu}
-                            color="inherit"
-                        >    
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchor}
-                            anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "right"
-                            }}
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "right"
-                            }}
-                            open={open}
-                            onClose={this.handleMenuClose}
-                        >
+    return (
+        <nav>
+            <div className="nav-content">
+                <div className="nav-row">
+                    <a href="/" className="logo-container">
+                        <FontAwesomeIcon color="#0c0514" size="2x" icon={faChild} />ICON
+                    </a>
+                    <ul className="nav-links right">
+                        <li className="nav-link text-link">
                             <Link
-                                component={RouterLink}
                                 to={'/'}
                                 style={{ textDecoration: "none" }}
-                            >
-                                <MenuItem onClick={this.handleMenuClose}><p className="menu-text">Home</p></MenuItem>
+                            > 
+                                About 
                             </Link>
-                            { this.props.currentUser ? (
-                                    <MenuItem onClick={this.props.signOutStart}>
-                                        <p className="menu-text">SignOut</p>
-                                    </MenuItem>
-                                ) : (
-                                    <Link 
-                                        component={RouterLink}
-                                        style={{ textDecoration: "none" }}
-                                        to={'/signin'}
-                                    >
-                                        <MenuItem onClick={this.handleMenuClose}><p className="menu-text">SignIn</p></MenuItem>
-                                    </Link>
-                                )
+                        </li>
+                        <li className="nav-link text-link">
+                            <Link
+                                to={'/'}
+                                style={{ textDecoration: "none" }}
+                            > 
+                                Market 
+                            </Link>
+                        </li>
+                        <li className="nav-link text-link">
+                            <Link
+                                to={'/'}
+                                style={{ textDecoration: "none" }}
+                            > 
+                                Stock 
+                            </Link>
+                        </li>
+                        <li className="nav-link text-link">
+                            { currentUser ? (
+                                <div onClick={signOutStart}>
+                                    SignOut
+                                </div>
+                            ) : (
+                                <Link 
+                                    style={{ textDecoration: "none" }}
+                                    to={'/signin'}
+                                >
+                                    SignIn
+                                </Link>
+                            )
                             }
-                        </Menu>
-                    </Toolbar>
-                </AppBar>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        )
-    }
+        </nav>
+    )
+
 }
+
 
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser

@@ -45,7 +45,7 @@ const createDateJSON = (dataJSON, s) => {
         const Month = new Date(key).getMonth() + 1
         for (let i = 0; i < 5; i++) {
             for (let j = 1; j < 13; j++) {
-                if ((Year == YearTemplate[i]) && (Month == j))
+                if ((Year === YearTemplate[i]) && (Month === j))
                     DateJSON[i][j].push(value)
             }
         }
@@ -60,7 +60,7 @@ const createDateJSON = (dataJSON, s) => {
             var ReuceResult = '';
 
             //Open
-            if(s == 'close') {
+            if(s === 'close') {
                 ReuceResult = data[data.length - 1]
             } else {
                 ReuceResult = data[0]
