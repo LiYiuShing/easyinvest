@@ -1,31 +1,32 @@
 # EasyInvest (Processing)
+EasyInvest is a test project to demonstrate the implementation of an Stock Quote and Indexes provide Basic Quote using the React.
 
-## Quick Start
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+### Prerequisites
+What things you need to install before installing this software:
+* [NPM](https://www.npmjs.com/get-npm)
+* [pip](https://pypi.org/project/pip/)
+
+## Installing
+In order to get the project up and running:
+
 1. Put your environment variables at .env
-2. Install all dependencies:
-  ``` javascript
-    $ npm install 
-  ```
-  ``` javascript
-    $ pip install flask yfinance
-  ```
-
-3. Spin up the server: 
+2. Install all dependencies and spin up the server: 
   Run the client server at http://localhost:3000/
   ``` javascript
     $ cd client
+    $ npm install 
     $ npm start
   ```
   Run the back-end server at http://localhost:5000/
   ``` javascript
     $ cd server
+    $ pip install flask yfinance
     $ flask run
   ```
 
-## Environment Variables
-
-
-## Dependencies
+## Front-End Dependencies
 
 ### React
 A JavaScript library for building user interfaces.
@@ -50,4 +51,15 @@ A mobile and web application development platform developed by Firebase, Inc.
 
 ### Sass
 A stylesheet language that's compiled to CSS.
+
+## Back-End Dependencies 
+
+### Flask 
+Flask is a lightweight WSGI web application framework. It is designed to make getting started quick and easy, with the ability to scale up to complex applications.
+
+### yfinance 
+yfinance aimes to solve this problem by offering a reliable, threaded, and Pythonic way to download historical market data from Yahoo! finance.
+
+## Authors
+* Li Yiu Shing [Github](https://github.com/LiYiuShing)
 
