@@ -1,10 +1,28 @@
-# EasyInvest
+# EasyInvest (Processing)
 
 ## Quick Start
 1. Put your environment variables at .env
-2. Install all dependencies and spin up the server: 
+2. Install all dependencies:
   ``` javascript
-    $ yarn start
+    $ npm install 
+  ```
+  ``` javascript
+    $ pip install flask yfinance
+  ```
+
+3. Spin up the server: 
+  For the client server:
+  Run the server at http://localhost:3000/
+  ``` javascript
+    $ cd client
+    $ npm start
+  ```
+  
+  For the back-end server:
+  Run the server at http://localhost:5000/
+  ``` javascript
+    $ cd server
+    $ flask run
   ```
 
 ## Environment Variables
@@ -24,9 +42,6 @@ An open-source JavaScript library for managing application state.
 ### Redux Saga
 A library that aims to make application side effects (i.e. asynchronous things like data fetching and impure things like accessing the browser cache) easier to manage, more efficient to execute, easy to test, and better at handling failures.
 
-### Axios
-Promise based HTTP client for the browser and node.js
-
 ### React-stockcharts
 Create highly customizable stock charts
 
@@ -38,3 +53,4 @@ A mobile and web application development platform developed by Firebase, Inc.
 
 ### Sass
 A stylesheet language that's compiled to CSS.
+
