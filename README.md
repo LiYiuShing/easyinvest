@@ -11,15 +11,12 @@
   ```
 
 3. Spin up the server: 
-  For the client server:
-  Run the server at http://localhost:3000/
+  Run the client server at http://localhost:3000/
   ``` javascript
     $ cd client
     $ npm start
   ```
-  
-  For the back-end server:
-  Run the server at http://localhost:5000/
+  Run the back-end server at http://localhost:5000/
   ``` javascript
     $ cd server
     $ flask run
