@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -21,9 +21,12 @@ const Header = ({ currentUser, signOutStart}) => {
             <div className="nav-content">
                 <div className="nav-row">
                     <a href="/" className="logo-container">
-                        <FontAwesomeIcon color="#0c0514" size="2x" icon={faChild} />ICON
+                        <FontAwesomeIcon color="#0c0514" size="2x" icon={faChild} />EasyInvest
                     </a>
                     <ul className="nav-links right">
+                        <li className="nav-link text-link">
+                            {<Search />}
+                        </li>
                         <li className="nav-link text-link">
                             <Link
                                 to={'/'}

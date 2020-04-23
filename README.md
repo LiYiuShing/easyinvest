@@ -14,14 +14,14 @@ In order to get the project up and running:
 1. Put your environment variables at .env
 2. Install all dependencies and spin up the server: 
   
-  Run the client server at http://localhost:3000/
+Run the client server at http://localhost:3000/
   ``` javascript
     $ cd client
     $ npm install 
     $ npm start
   ```
 
-  Run the back-end server at http://localhost:5000/
+Run the back-end server at http://localhost:5000/
   ``` javascript
     $ cd server
     $ pip install flask yfinance

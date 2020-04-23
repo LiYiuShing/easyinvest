@@ -8,7 +8,7 @@ import symbolReducer from './symbol/symbol.reducer';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: []
+    whitelist: ["user"]
 }
 
 const rootReducer = combineReducers({

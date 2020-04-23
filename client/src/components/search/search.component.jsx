@@ -79,12 +79,12 @@ const Search = () => {
     return (
         <div>
             <div className="search-input">
-                <input 
+                <input  
                     className="search-input-content"
                     id="searchInput"
                     type="text" 
                     onChange={handleOnSearch} 
-                    placeholder="Symbol - AAPL"
+                    placeholder="Search Symbol"
                 />
             </div>
                 {

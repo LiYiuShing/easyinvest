@@ -1,0 +1,37 @@
+.footer-stock {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    background-color: #2B2B2B;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+
+    ul {
+        margin: 0;
+        li{
+            float: right;
+            white-space: nowrap;
+            font-size: 12px;
+            position: relative;
+            padding: 10px;
+            border-left: 1px solid #f7f7f7;
+            display: block;
+
+            #positive {
+                color: '#3fcc6f'
+            }
+            .negative {
+                color: '#fd6e70'
+            }
+            
+            .svg {
+                width: 12px;
+                height: 12px;
+            }            
+        }
+    }
+}
+
+

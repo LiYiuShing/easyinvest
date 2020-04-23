@@ -7,7 +7,7 @@ const Footer = () => (
             <div className="container">
                 <div className="footer-inner">
                     <p className="footer-logo">
-                        ABCDEFG12345
+                        EasyInvest
                     </p>
                     <div className="footer-item">
                         <div className="footer-row">

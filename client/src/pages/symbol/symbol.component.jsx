@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { _404 } from './../error/errorpage.component';
 
 import { fetchSymbolStart } from '../../redux/symbol/symbol.actions';
 
 import StockDetail from '../../components/stock/stockdetail/stockdetail.component';
 
-
-const SymbolPage = ({fetchSymbolStart, symbolData, loading }) => {
+const SymbolPage = ({fetchSymbolStart, symbolData }) => {
     const { symbol } = useParams();
     const mounted = useRef();
     const [stockDataState, setstockDataState] = useState(null);

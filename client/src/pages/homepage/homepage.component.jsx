@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
 import './homepage.styles.scss';
 import invest from '../../assets/invest.svg';
 import invest2 from '../../assets/invest2.svg'
@@ -24,7 +23,7 @@ const HomePage = () => (
                                 EasyInvest is a social network for traders and investors on Stock, Futures and Forex markets! 
                             </div>
                             <div className="main-wrapper">
-                                <Link to="/signin" className="main-button">User Sign In</Link>
+                                <Link to="/signin" className="main-button">GET STARTED</Link>
                             </div>
                         </div>
                     </div>
@@ -62,7 +61,7 @@ const HomePage = () => (
                         <div className="card-media">
                             <img alt="" src={invest} className="card-image"/>
                         </div>
-                        <h4>A Basic Stock Platform</h4>
+                        <h4>Stock Platform</h4>
                         <p className="card-text">
                             EasyInvest is designed to give investor a basic of stock data through the differnet graphs analysis.
                         </p>
@@ -71,7 +70,7 @@ const HomePage = () => (
                         <div className="card-media">
                             <img alt="" src={invest2} className="card-image"/>
                         </div>
-                        <h4>React</h4>
+                        <h4>Stock Prediction</h4>
                         <p className="card-text">
                             EasyInvest is designed to give investor a basic of stock data through the differnet graphs analysis.
 
@@ -81,7 +80,7 @@ const HomePage = () => (
                         <div className="card-media">
                             <img alt="" src={invest3} className="card-image"/>
                         </div>
-                        <h4>Redux</h4>
+                        <h4>Follow The Stock Trend</h4>
                         <p className="card-text">
                             EasyInvest is designed to give investor a basic of stock data through the differnet graphs analysis.
                         </p>

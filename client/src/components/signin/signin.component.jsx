@@ -1,34 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import GoogleLogin from './googlelogin.compoent'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChild } from "@fortawesome/free-solid-svg-icons";
 
 import TextField from '@material-ui/core/TextField';
 
-import Logo from "../../assets/sorry.jpg";
 import './signin.styles.scss';
-
-import { googleSignInStart } from '../../redux/user/user.actions';
-import { spawn } from 'redux-saga/effects';
-
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
     textAlign: 'center',
     fontSize: 12,
-    color: 'rgba(0,0,0, 0.54)'
+    color: 'rgba(0,0,0, 0.54)',
   },
   gridroot: {
     padding: '7px',
-    margin: '20px 10px'
+    margin: '20px 10px ;'
   },
   title: {
     fontSize: 22,
@@ -50,38 +44,24 @@ const useStyles = makeStyles({
   }
 });
 
-const GoogleLogin = ({ googleSignInStart }) => {
-    return(
-        <div className="google-btn" onClick={googleSignInStart}>
-            <div className="google-icon-wrapper">
-                <img className="google-icon" alt="" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
-            </div>
-            <p className="btn-text"><b>Sign in with google</b></p>
-        </div>
-    )
-}
-
-
 const SignIn = () => {
     const classes = useStyles();
 
     return (
       <div className="container">
-        <Grid container md={12} className={classes.gridroot}>
-          <Grid md={7} sm={6} container>
+        <Grid container md={12} className={classes.gridroot} item>
+          <Grid md={7} sm={6} container item>
             <Grid>
-                Ahhhhhhhhhhhhhhhhhhhhhhhhhh ~~~~~~~~~~~~~~~~~~~
-                <Grid><img src={Logo} /></Grid>
-                <Typography>AAAAAAAAAAAAAAAAAAAAAAAAA</Typography>
-                <Typography>bbbbbbbbbbbbbbbbbb</Typography>
-                <spwn>CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC</spwn>
-                <li>A</li>
-                <li>B</li>
-                <li>C</li>
-                <span>sdasdsadsadsadsadsad</span>
+              <h2>Welcome To EasyInvest</h2>
+              <ul className="sign-in-ul">
+                <li className="sign-in-li">Explore the stock market</li>
+                <li className="sign-in-li">To track your favorite symbols across the site, log in or create an account.</li>
+                <li className="sign-in-li">You will need to reset your password for your first log in by clicking <span className="sign-in-link ">FORGOT PASSWORD</span>.</li>
+              <li className="sign-in-li alert">SIGNIN AND SIGNUP ONLY AVAILABLE GOOLGE LOGIN NOW</li>
+              </ul>
             </Grid>
           </Grid>
-          <Grid md={3} sm={4}>
+          <Grid md={3} sm={4} item>
             <Card className={classes.root}>
               <CardContent>
                 <Grid>
@@ -114,7 +94,7 @@ const SignIn = () => {
                     />
                 </Grid>
                 <br></br>
-                <span>Don’t have an account? Sign up</span>
+                <span>Don’t have an account? <span className="sign-in-link">Sign up</span></span>
               </CardContent>
               <Grid className={classes.policy}>
                 By signing in, you agree to our terms of service and privacy
@@ -128,8 +108,4 @@ const SignIn = () => {
     );
 }
 
-const mapDispatchToProps = dispatch => ({
-    googleSignInStart: () => dispatch(googleSignInStart())
-})
-
-export default connect(null, mapDispatchToProps)(SignIn)
+export default SignIn
