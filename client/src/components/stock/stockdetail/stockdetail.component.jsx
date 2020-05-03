@@ -8,6 +8,7 @@ import Loader from '../../loader/loader';
 
 import StockMonthlyReturn from '../stockdetail/stockmonthlyreturn/stockmonthlyreturn.component';
 import StockChart from '../stockdetail/stockchart/stockchart.component';
+import News from './news/news.conponent';
 
 import './stockdetail.styles.scss';
 
@@ -147,7 +148,7 @@ const StockDetail = (props) => {
                 <div>
                     <Paper className={classes.root} elevation={3}>
                         <Grid container>
-                            <Typography variant="h6">{data['symbol']}  {data['shortName']}</Typography>
+                            <h1>{data['symbol']}  {data['shortName']}</h1>
                         </Grid>
                         <Grid container>
                             <Grid container>
@@ -163,11 +164,11 @@ const StockDetail = (props) => {
 
                     <Paper className={classes.root} elevation={3}>
                             <Grid>
-                                <Typography>Performances</Typography>
+                                <h1>Performances</h1>
                                 <StockChart history={history} />
                             </Grid>
                             <Grid>
-                                <Typography>Monthly Performances</Typography>
+                                <h1>Monthly Performances</h1>
                                 <StockMonthlyReturn history={history} />
                             </Grid>
                     </Paper>
@@ -175,7 +176,7 @@ const StockDetail = (props) => {
                     <Paper className={classes.root} elevation={3}>
                         <Grid container className={classes.root}>
                             <Grid container>
-                                <Typography>About {data['shortName']}</Typography>
+                                <h1>About {data['shortName']}</h1>
                                 <Grid>{data['longBusinessSummary']}</Grid>
                             </Grid>
                             <Grid container className={classes.space}>
@@ -203,7 +204,10 @@ const StockDetail = (props) => {
                                         <Typography variant="body2"><a href={data['website']}>{data['website']}</a></Typography>
                                     </Grid>
                                 </Grid>
+
+                                <News company={data['shortName']} />
                             </Grid>
+
                         </Grid>
                     </Paper>
                 </div>
