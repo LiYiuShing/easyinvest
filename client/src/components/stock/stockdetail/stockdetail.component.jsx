@@ -148,7 +148,7 @@ const StockDetail = (props) => {
                 <div>
                     <Paper className={classes.root} elevation={3}>
                         <Grid container>
-                            <h1>{data['symbol']}  {data['shortName']}</h1>
+                            <h2>{data['symbol']}  {data['shortName']}</h2>
                         </Grid>
                         <Grid container>
                             <Grid container>

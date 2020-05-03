@@ -21,11 +21,13 @@
 
 .article-source {
     margin-right: 2%;
+    font-size: 15px;
 }
 
 .publication-date {
     font-weight: 400;
     color: rgb(219, 219, 219);
+    font-size: 15px;
 }
 
 .outlet-time{
@@ -39,12 +41,11 @@
 }
 
 .news-box{
-    margin-top: 4%;
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    padding: 2%;
+    padding: 0.5%;
 }
 
 .news-box:hover {

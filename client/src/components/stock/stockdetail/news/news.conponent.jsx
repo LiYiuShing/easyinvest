@@ -9,7 +9,7 @@ const News = (props) => {
     useEffect(() => {
         try {
             setLoading(true)
-            fetch(`https://newsapi.org/v2/everything?q=${company}&pageSize=7&apiKey=${process.env.REACT_APP_API_NEWS_KEY}`)
+            fetch(`https://newsapi.org/v2/everything?q=${company}&pageSize=7&sortBy=popularity&apiKey=${process.env.REACT_APP_API_NEWS_KEY}`)
                 .then(res => res.json())
                 .then(data =>  {
                     setNews(data)
@@ -28,13 +28,9 @@ const News = (props) => {
             if(now.getMonth() === newDate.getMonth()) {
                 if(now.getDate() === newDate.getDate()) {
                     if(now.getHours() === newDate.getHours()) {
-                        if(now.getMinutes() - newDate.getMinutes()) {
-                            const diff = now.getSeconds() - newDate.getSeconds();
-                            return `${diff}s`
-                        } else {
-                            const diff = now.getMinutes() - newDate.getMinutes();
-                            return `${diff}m`
-                        }
+                        const diff = now.getMinutes() - newDate.getMinutes();
+                        return `${diff}m`
+                        
                     } else {
                         const diff = now.getHours() - newDate.getHours();
                         return `${diff}h`
@@ -45,7 +41,7 @@ const News = (props) => {
                 }
             } else {
                 const diff = now.getMonth() - newDate.getMonth();
-                return `${diff}m`
+                return `${diff}mo`
             }
         } else {
             const diff = now.getFullYear() - newDate.getFullYear();
